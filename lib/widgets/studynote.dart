@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quickanimate/quickanimate.dart';
 
 class Studynote extends StatefulWidget {
   const Studynote({super.key});
@@ -35,112 +36,85 @@ class _StudynoteState extends State<Studynote> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Plan for Day",
-              style: TextStyle(
-                color: Color(0xffEC5228),
-                fontFamily: "Outfit",
-                fontSize: 30
-              ),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white
-              ),
-              onPressed: () {}, 
-              child: const Text(
-                "Save",
+        FadeAnimation(
+          duration: const Duration(milliseconds: 800),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Plan for Day",
                 style: TextStyle(
-                  color: Color(0xff1e1e1e),
+                  color: Color(0xffEC5228),
                   fontFamily: "Outfit",
-                  fontSize: 20
+                  fontSize: 30
                 ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white
+                ),
+                onPressed: () {
+          
+                    // Saving Logic
+          
+                }, 
+                child: const Text(
+                  "Save",
+                  style: TextStyle(
+                    color: Color(0xff1e1e1e),
+                    fontFamily: "Outfit",
+                    fontSize: 20
+                  ),
+                )
               )
-            )
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 16),
-        TextField(
-          controller: _controller1,
-          style: const TextStyle(
-            color: Colors.white,
-            fontFamily: "Outfit",
-            fontSize: 20,
-            fontWeight: FontWeight.w400
-          ),
-          decoration: InputDecoration(
-            hintText: "Enter task",
-            hintStyle: const TextStyle(
-            color: Colors.grey,
-            fontFamily: "Outfit",
-            fontSize: 20,
-            fontWeight: FontWeight.w400
-          ),
-            filled: true,
-            fillColor: const Color(0xff2e2e2e),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide.none,
-            ),
-          ),
+        SlideAnimation( 
+          duration: const Duration(milliseconds: 600),
+          child: _textEdit(_controller1)
         ),
-        const SizedBox(height: 16), // Spacing
-        TextField(
-          controller: _controller2,
-          style: const TextStyle(
-            color: Colors.white,
-            fontFamily: "Outfit",
-            fontSize: 20,
-            fontWeight: FontWeight.w400
-          ),
-          decoration: InputDecoration(
-            hintText: "Enter task",
-            hintStyle: const TextStyle(
-            color: Colors.grey,
-            fontFamily: "Outfit",
-            fontSize: 20,
-            fontWeight: FontWeight.w400
-          ),
-            filled: true,
-            fillColor: const Color(0xff2e2e2e),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide.none,
-            ),
-          ),
+        const SizedBox(height: 16), 
+        SlideAnimation(
+          duration: const Duration(milliseconds: 600),
+          intervalBegin: 0.2,
+          child: _textEdit(_controller2)
         ),
-        const SizedBox(height: 16), // Spacing
-        TextField(
-          controller: _controller3,
-          style: const TextStyle(
-            color: Colors.white,
-            fontFamily: "Outfit",
-            fontSize: 20,
-            fontWeight: FontWeight.w400
-          ),
-          decoration: InputDecoration(
-            hintText: "Enter task",
-            hintStyle: const TextStyle(
-            color: Colors.grey,
-            fontFamily: "Outfit",
-            fontSize: 20,
-            fontWeight: FontWeight.w400
-          ),
-            filled: true,
-            fillColor: const Color(0xff2e2e2e),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide.none,
-            ),
-          ),
-        ),
-
-        
-
+        const SizedBox(height: 16),    
+        SlideAnimation(
+          duration: const Duration(milliseconds: 600),
+          intervalBegin: 0.3,
+          child: _textEdit(_controller3)
+        )
       ],
     );
+  }
+
+  TextField _textEdit(TextEditingController _controller) {
+    return TextField(
+        controller: _controller,
+        style: const TextStyle(
+          color: Colors.white,
+          fontFamily: "Outfit",
+          fontSize: 20,
+          fontWeight: FontWeight.w400
+        ),
+        decoration: InputDecoration(
+          hintText: "Enter task",
+          hintStyle: const TextStyle(
+          color: Colors.grey,
+          fontFamily: "Outfit",
+          fontSize: 20,
+          fontWeight: FontWeight.w400
+        ),
+          filled: true,
+          fillColor: const Color(0xff2e2e2e),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      );
   }
 }

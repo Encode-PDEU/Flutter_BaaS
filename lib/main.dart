@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor:Color(0xff1e1e1e),
-          selectionColor: Colors.transparent, // Remove selection highlight
+          selectionColor: Colors.transparent,
           selectionHandleColor: Color(0xff1e1e1e),
         ),
         useMaterial3: true,

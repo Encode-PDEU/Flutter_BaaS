@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:notes/screens/editnote.dart';
 import 'package:notes/widgets/allnote.dart';
 import 'package:notes/widgets/generalnote.dart';
 import 'package:notes/widgets/notestitle.dart';
 import 'package:notes/widgets/studynote.dart';
+import 'package:quickanimate/quickanimate.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+    this.selectedIndex,
+  });
+
+  final int? selectedIndex;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -13,8 +20,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  int _selectedIndex = 0;
+  late int _selectedIndex;
   final List<String> _texts = ["All", "General", "Study", "Reminder"];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.selectedIndex ?? 0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +52,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
             child: FloatingActionButton(
-              onPressed: () {}, 
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransitionAnimation(
+                    mode: PageTransitionMode.fade,
+                    duration: const Duration(milliseconds: 800),
+                    page: Editnote( selectedindex: _selectedIndex, )
+                  )
+                );
+              }, 
               backgroundColor: const Color(0xff99BC85),
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(

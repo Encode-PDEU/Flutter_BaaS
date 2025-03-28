@@ -6,9 +6,11 @@ class Editnote extends StatefulWidget {
   const Editnote({
     super.key,
     this.note,
+    this.selectedindex,
   });
 
   final Note? note;
+  final int? selectedindex;
 
   @override
   State<Editnote> createState() => _EditnoteState();
@@ -62,8 +64,8 @@ class _EditnoteState extends State<Editnote> {
                         onPressed: () {
                           Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(builder: (context) => const HomeScreen()),
-                            (route) => false, // Removes all previous routes
+                            MaterialPageRoute(builder: (context) => HomeScreen(selectedIndex: widget.selectedindex,)),
+                            (route) => false,
                           );
                         },
                         icon: const Icon(Icons.exit_to_app, color: Colors.red),
@@ -71,7 +73,11 @@ class _EditnoteState extends State<Editnote> {
                       ),
                       const VerticalDivider(),
                       TextButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+
+                          // Update Logic and Saving Logic
+
+                        },
                         icon: const Icon(Icons.save, color: Colors.green),
                         label: const Text("Save", style: TextStyle(color: Colors.green)),
                       ),
@@ -91,7 +97,11 @@ class _EditnoteState extends State<Editnote> {
             padding: const EdgeInsets.only(right: 20.0),
             child: FloatingActionButton.small(
               heroTag: 'Save',
-              onPressed: () {}, 
+              onPressed: () {
+
+                // Update Logic and Saving Logic
+
+              }, 
               backgroundColor: const Color(0xff1e1e1e),
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
